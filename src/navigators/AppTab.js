@@ -3,12 +3,12 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import CustomTabBar from '../components/CustomTabBar';
 
 import HomeStack from './HomeStack';
-//import WorkoutStack from './WorkoutStack';
+import WorkoutStack from './WorkoutStack';
 import MyWorkoutsStack from './MyWorkoutStack';
 
 export default createBottomTabNavigator({
     HomeStack,    
-    //WorkoutStack,
+    WorkoutStack:{ screen:WorkoutStack, navigationOptions:{ tabBarVisible:false} },
     MyWorkoutsStack
 },{
     tabBarComponent:(props)=>(

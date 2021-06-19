@@ -1,16 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import useMuscleImage from './useMuscleImage';
 import { SwipeRow } from 'react-native-swipe-list-view';
 
-const ExercisesItemArea = styled.TouchableHighlight`
+const ExerciseItemArea = styled.TouchableHighlight`
     height: 50;
     flex-direction: row;
     background-color: #FFF;
     margin-bottom: 10px;
 `;
 
-const ExercisesMuscleArea = styled.View`
+const ExerciseMuscleArea = styled.View`
     width: 50px;
     height: 50px;
     background-color: #FFCC98;
@@ -19,12 +19,12 @@ const ExercisesMuscleArea = styled.View`
     align-items: center;
 `;
 
-const ExercisesMuscleImage = styled.Image`
+const ExerciseMuscleImage = styled.Image`
     width: 35px;
     height: 35px;
 `;
 
-const ExercisesInfo = styled.View`
+const ExerciseInfo = styled.View`
     flex-direction: column;
     justify-content: center;
     margin-left: 5px;
@@ -58,19 +58,19 @@ export default ( props ) => {
             <ExerciseSwipe onPress={props.delAction} underlayColor="transparent">
                <ExerciseSwipeIcon source={require('../assets/trash-white.png')}/> 
             </ExerciseSwipe>
-            <ExercisesItemArea onPress={props.editAction} underlayColor="transparent" >
+            <ExerciseItemArea onPress={props.editAction} underlayColor="FF0000" >
             <>
-              <ExercisesMuscleArea>
-                  <ExercisesMuscleImage source={useMuscleImage(props.data.muscle)}/>
-              </ExercisesMuscleArea>                
-              <ExercisesInfo>
+              <ExerciseMuscleArea>
+                  <ExerciseMuscleImage source={useMuscleImage(props.data.muscle)}/>
+              </ExerciseMuscleArea>                
+              <ExerciseInfo>
                   <ExerciseName>{props.data.name}</ExerciseName>
                   <ExerciseDetails>
-                      {`${props.data.sets} séries - ${props.data.reps} rep ${props.data.load?`- ${props.data.load} KG`:''}`}  
+                      {`${props.data.sets} séries - ${props.data.reps} repetiçoes ${props.data.load?`- ${props.data.load} KG`:''}`}  
                   </ExerciseDetails>
-              </ExercisesInfo>
+              </ExerciseInfo>
             </>
-            </ExercisesItemArea>
+            </ExerciseItemArea>
         </SwipeRow>
        
     );

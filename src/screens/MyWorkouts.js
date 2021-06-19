@@ -13,24 +13,22 @@ const WorkoutList = styled.FlatList`
 `;
 
 const Page = (props) => {
-    /*
+    
     const editWorkout = (workout) => {
         props.navigation.navigate('EditWorkout',{workout})
     }
-    */
     
     return(
-        <Container>
-            <WorkoutList 
-                data={props.myWorkouts}
-                renderItem={({item})=>
-                    <Workout
-                       data={item}
-                   
-                    />
-                } 
-            />
-       </Container>
+      <Container>
+          <WorkoutList 
+             data={props.myWorkouts}
+             renderItem={( {item} )=><Workout data={item} 
+                                              editAction={()=>editWorkout(item)} 
+                                              delAction={()=>props.delWorkout(item)}
+                                    />}  
+          />
+
+      </Container>
     );
 }
 

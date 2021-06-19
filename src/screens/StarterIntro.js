@@ -30,7 +30,7 @@ const BeginConfigArea = styled.View`
 `;
 
 const ButtonText = styled.Text`
-    color:#000;
+    color:#fff;
 `;
 
 const Page = (props) =>{
@@ -44,8 +44,8 @@ const Page = (props) =>{
              <Welcomelogo source={ require('../assets/boneco.png') }/>
           </WelcomeImage>
           <BeginConfigArea>
-              <DefaultButton>
-                  <ButtonText width="100%" bgcolor="#0072C0" underlayColor="#0B7AC6" onPress={start}> Iniciar Configuração </ButtonText>
+              <DefaultButton width="100%" bgcolor="#0072C0" underlayColor="#0B7AC6" onPress={start}>
+                  <ButtonText> Iniciar Configuração </ButtonText>
               </DefaultButton> 
           </BeginConfigArea>
       </Container>

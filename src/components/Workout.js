@@ -1,9 +1,9 @@
 import React,{useState} from  'react';
-import styled from 'styled-components';
+import styled from  'styled-components';
 import useMuscleImage from '../components/useMuscleImage';
 
 const Workout = styled.View`
-    background-color:#F1F1F1;
+    background-color:#F1f1f1;
     flex-direction:row;
     border-radius:10px;
     margin-bottom:20px;
@@ -12,15 +12,19 @@ const Workout = styled.View`
 const WorkoutInfo = styled.View`
     flex:1;
 `;
-const WorkoutActions = styled.View`
-`;
 const WorkoutTitle = styled.Text`
     font-size:17px;
     margin:10px;
 `;
+
+const WorkoutActions = styled.View`  
+    justify-content: center;
+`;
+
 const MuscleScroll = styled.ScrollView`
     margin:10px;
 `;
+
 const MuscleGroup = styled.View`
     width:40px;
     height:40px;
@@ -34,6 +38,7 @@ const MuscleImage = styled.Image`
     width:30px;
     height:30px;
 `;
+
 const WorkoutButton = styled.TouchableHighlight`
     width:25px;
     height:25px;
@@ -69,38 +74,47 @@ export default (props) => {
     const delWorkout = () => {
         props.delAction(); //dentro de MyWorkout
     }
+
+    const goWorkout = () => {
+        props.goAction();
+    }
     return(
         <Workout>
             <WorkoutInfo>
-            <WorkoutTitle>{props.data.name}</WorkoutTitle>  
+                <WorkoutTitle> {props.data.name} </WorkoutTitle>  
                 <MuscleScroll horizontal={true} >
-                    {muscleGroups.map((m, index)=>(
+                    {muscleGroups.map( (m, index)=>(
                       <MuscleGroup key={index}>
-                          <MuscleImage source={useMuscleImage(m)}/>
+                          <MuscleImage source={useMuscleImage(m)} />
                       </MuscleGroup>    
-                    ))}
+                    ) )}
                 </MuscleScroll>
             </WorkoutInfo>
-
-            <WorkoutActions>
-                //so mostra o botao se tiver addAction           
-                {props.addAction &&
-                    <WorkoutButton onPress={()=>addWorkout()} underlayColor="transparent">
+            
+            <WorkoutActions>                
+                {props.addAction && 
+                    <WorkoutButton onPress={()=>addWorkout()} underlayColor="transparent" >
                         <WorkOutButtonImage source={included?require('../assets/check-black.png'):require('../assets/add.png')}/>
                     </WorkoutButton>
                 }
-                
-                {props.editAction &&
+
+                {props.editAction && 
                     <WorkoutButton onPress={()=>editWorkout()} underlayColor="transparent">
                         <WorkOutButtonImage source={require('../assets/edit-black.png')}/>
                     </WorkoutButton>
                 }
-
-                {props.delAction &&
+                
+                {props.delAction && 
                     <WorkoutButton onPress={()=>delWorkout()} underlayColor="transparent">
                         <WorkOutButtonImage source={require('../assets/trash-black.png')}/>
                     </WorkoutButton>
-                }                
+                }
+
+                {props.goAction && 
+                    <WorkoutButton onPress={()=>goWorkout()} underlayColor="transparent">
+                        <WorkOutButtonImage source={require('../assets/play-black.png')}/>
+                    </WorkoutButton>
+                }
             </WorkoutActions>
         </Workout>
     );

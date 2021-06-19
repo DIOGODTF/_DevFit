@@ -1,6 +1,8 @@
 import React,{ useState } from 'react';
+import { StackActions, NavigationActions } from 'react-navigation';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import DefaultButton from '../components/DefaultButton';
 
 const Container = styled.SafeAreaView`
     flex: 1;
@@ -49,6 +51,17 @@ const LevelItem = styled.TouchableHighlight`
 `;
 
 const LevelItemText = styled.Text``;
+const ResetArea = styled.View`
+    flex: 1;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+`;
+
+
+const ButtonText = styled.Text`
+    color: #FFF;
+`;
 
 //tem que criar sempre como const pra poder ter acesso ao navigation.options
 const Page = (props) =>{
@@ -66,7 +79,17 @@ const Page = (props) =>{
         }
         props.setWorkoutDays(newWorkoutDays);
     }
+    
+    const resetAction = () =>{
+        props.reset();
+        
+        const resetAction = StackActions.reset({
+            index:0,
+            actions:[ NavigationActions.navigate({routeName:'StarterStack'}) ]
+        });
 
+        props.navigation.dispatch(resetAction);
+    }
     return(
       <Container>
           <Label>Seu nome completo:</Label>
@@ -107,6 +130,11 @@ const Page = (props) =>{
                   <LevelItemText> Avançado </LevelItemText>
               </LevelItem>
           </ListArea>
+          <ResetArea>
+                <DefaultButton width='90%' bgcolor="#4AC34E" onPress={resetAction} underlayColor="transparent">
+                    <ButtonText>Resetar Configuração</ButtonText>
+                </DefaultButton>
+          </ResetArea>
       </Container>
     );
 }
@@ -130,7 +158,8 @@ const mapDispatchToProps = (dispatch) => {
     return{    
       setName:(name)=>dispatch({type:'SET_NAME', payload:{name}}),
       setWorkoutDays:(workoutDays)=>dispatch({type:'SET_WORKOUTDAYS', payload:{workoutDays}}),
-      setLevel:(level)=>dispatch({type:'SET_LEVEL', payload:{level}})
+      setLevel:(level)=>dispatch({type:'SET_LEVEL', payload:{level}}),
+      reset:()=>dispatch({type:'RESET'})
     }
 }
 
